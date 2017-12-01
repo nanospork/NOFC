@@ -1,0 +1,2 @@
+Nolo OSVR Fusion Configuration
+Version 0.2
