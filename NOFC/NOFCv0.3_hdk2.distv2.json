@@ -67,6 +67,7 @@
 				"name": "NoloControllerLeft",
 				"position": "/com_osvr_Nolo/LYRobotix Nolo/tracker/2",
 				"orientation": "/com_osvr_Nolo/LYRobotix Nolo/tracker/2",
+				"timestamp": "position",
 				"flipButton": "/NOFC/flipButton",
 				"flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
 			}
@@ -78,6 +79,7 @@
 				"name": "NoloControllerRight",
 				"position": "/com_osvr_Nolo/LYRobotix Nolo/tracker/3",
 				"orientation": "/com_osvr_Nolo/LYRobotix Nolo/tracker/3",
+				"timestamp": "position",
 				"flipButton": "/NOFC/flipButton",
 				"flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
 			}
@@ -138,8 +140,8 @@
         },	
 		
 		"/me/head": "/je_nourish_fusion/NoloFusedHead/tracker/0",
-		"/me/hands/left": "/com_osvr_Nolo/LYRobotix Nolo/tracker/2",
-		"/me/hands/right": "/com_osvr_Nolo/LYRobotix Nolo/tracker/3"
+		"/me/hands/left": "/je_nourish_fusion/NoloControllerLeft/tracker/0",
+		"/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0"
 		/* --- End NOFC Aliases --- */	
 		/* Add a comma after this comment to add more aliases to this config file */
     }
