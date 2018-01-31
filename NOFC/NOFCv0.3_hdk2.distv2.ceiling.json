@@ -1,6 +1,5 @@
 {
 	"description": "[Distortion Correction V2 variant] Version 0.3 of the Nolo OSVR Fusion Configuration for Ceiling Mode. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
-	"sleep": 1,
 	"renderManagerConfig": {
 		"meta": {
 			"schemaVersion": 1
@@ -88,7 +87,7 @@
 	    /* Add a comma after this comment to add more drivers to this config file */
 	],
 	"aliases": {
-		/* --- NOLO OSVR FUSION CONFIGURATION v0.2 Aliases --- */
+		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Aliases --- */
 		"/NOFC/head/roll": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd", 
 		"/NOFC/head/pitch": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd", 
 	        "/NOFC/head/yaw": "/hdkYawSpace",
@@ -108,6 +107,7 @@
 	        "/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0", 
 
 	        "/NOFC/CeilingHeadTracker": {
+		    "posttranslate" : [0.0,-0.1,0.1],
 		    "child": {
 			"changeBasis": {
 			    "x" : "x",
@@ -142,7 +142,7 @@
 
 	    
 		/* --- End NOFC Aliases --- */	
-		/* Add a comma after this comment to add more aliases to this config file */
+
 	},
 	"server": {
 		"sleep": 1

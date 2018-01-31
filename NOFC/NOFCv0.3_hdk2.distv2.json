@@ -1,6 +1,5 @@
 {
 	"description": "[Distortion Correction V2 variant] Version 0.3 of the Nolo OSVR Fusion Configuration. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
-	"sleep": 1,
 	"renderManagerConfig": {
 		"meta": {
 			"schemaVersion": 1
@@ -46,7 +45,7 @@
 			"driver": "FusionDevice",
 			"params": {
 				"name": "NoloFusedHead",
-				"position": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1",
+				"position": "/NOFC/HeadTracker",
 				"orientation": {
 					"roll": "/NOFC/head/roll",
 					"pitch": "/NOFC/head/pitch",
@@ -99,12 +98,22 @@
 				"degrees": 0
 			},
 			"child": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd"
-        },	
+		},	
 		
 		"/me/head": "/je_nourish_fusion/NoloFusedHead/tracker/0",
 		"/me/hands/left": "/je_nourish_fusion/NoloControllerLeft/tracker/0", 
-	        "/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0" 
+	        "/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0",
+
+	    	"/NOFC/HeadTracker": {
+		    "translate" : [0.0,-0.1,0.1],
+		    "child" : "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		    }
+		}
+
 		/* --- End NOFC Aliases --- */	
-		/* Add a comma after this comment to add more aliases to this config file */
-    }
+	},
+	"server": {
+		"sleep": 1
+	}
+
 }
