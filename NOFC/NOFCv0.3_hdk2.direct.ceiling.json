@@ -1,0 +1,114 @@
+{
+	"description": "Version 0.3 of the Nolo OSVR Fusion Configuration for Ceiling Mode. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
+        "renderManagerConfig": "sample-configs/renderManager.direct.landscape.HDKv2.0.newtracker.json",
+        "display": "displays/OSVR_HDK_2_0.json",
+	"drivers": [
+		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Drivers --- */
+		{
+		    "plugin": "je_nourish_fusion",
+		    "driver": "FusionDevice",
+		    "params": {
+			"name": "NoloFusedHead",
+			"position": "/NOFC/CeilingHeadTracker",
+			"orientation": {
+			    "roll": "/NOFC/head/roll",
+			    "pitch": "/NOFC/head/pitch",
+			    "yawFast": "/NOFC/head/yaw",
+			    "yawAccurate": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1",
+			// DO NOT EDIT ABOVE THIS LINE
+			    "alpha": 0.9995,
+			// DO NOT EDIT BELOW THIS LINE
+			    "recenterButton": "/NOFC/recenterButton"
+			},
+			"timestamp": "rotation",
+			"flipButton": "/NOFC/flipButton",
+			"flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		    }
+		},
+	    {
+		"plugin": "je_nourish_fusion",
+		"driver": "FusionDevice",
+		"params": {
+		    "name": "NoloControllerLeft",
+		    "position": "/NOFC/CeilingLeftControllerTracker",
+		    "orientation": "/com_osvr_Nolo/LYRobotix Nolo/tracker/2",
+		    "flipButton": "/NOFC/flipButton",
+		    "flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		}
+	    },
+	    {
+		"plugin": "je_nourish_fusion",
+		"driver": "FusionDevice",
+		"params": {
+		    "name": "NoloControllerRight",
+		    "position": "/NOFC/CeilingRightControllerTracker",
+		    "orientation": "/com_osvr_Nolo/LYRobotix Nolo/tracker/3",
+		    "flipButton": "/NOFC/flipButton",
+		    "flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		}
+	    }
+	    /* --- End NOFC Drivers --- */
+	    /* Add a comma after this comment to add more drivers to this config file */
+	],
+	"aliases": {
+		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Aliases --- */
+		"/NOFC/head/roll": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd", 
+		"/NOFC/head/pitch": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd", 
+	        "/NOFC/head/yaw": "/hdkYawSpace",
+		"/NOFC/flipButton": "/controller/right/menu",
+		"/NOFC/recenterButton": "/controller/right/system",
+
+		"/hdkYawSpace": {
+			"rotate": {
+				"axis": "y",
+				"degrees": -180
+			},
+			"child": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd"
+	        },
+	    
+		"/me/head": "/je_nourish_fusion/NoloFusedHead/tracker/0", 
+		"/me/hands/left": "/je_nourish_fusion/NoloControllerLeft/tracker/0", 
+	        "/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0", 
+
+	        "/NOFC/CeilingHeadTracker": {
+		    "posttranslate" : [0.0,-0.1,0.1],
+		    "child": {
+			"changeBasis": {
+			    "x" : "x",
+			    "y" : "-z",
+			    "z" : "y"
+			},
+			"child": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		    }
+		},
+	    
+	        "/NOFC/CeilingLeftControllerTracker": {
+		    "child": {
+			"changeBasis": {
+			    "x" : "x",
+			    "y" : "-z",
+			    "z" : "y"
+			},
+			"child": "/com_osvr_Nolo/LYRobotix Nolo/tracker/2"
+		    }
+		},
+
+	    	"/NOFC/CeilingRightControllerTracker": {
+		    "child": {
+			"changeBasis": {
+			    "x" : "x",
+			    "y" : "-z",
+			    "z" : "y"
+			},
+			"child": "/com_osvr_Nolo/LYRobotix Nolo/tracker/3"
+		    }
+		}
+
+	    
+		/* --- End NOFC Aliases --- */	
+
+	},
+	"server": {
+		"sleep": 1
+	}
+}
