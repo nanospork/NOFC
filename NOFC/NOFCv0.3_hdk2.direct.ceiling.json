@@ -1,42 +1,6 @@
 {
-	"description": "[Distortion Correction V2 variant] Version 0.3 of the Nolo OSVR Fusion Configuration for Ceiling Mode. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
-	"renderManagerConfig": {
-		"meta": {
-			"schemaVersion": 1
-		},
-		"renderManagerConfig": {
-			"directModeEnabled": true,
-			"directDisplayIndex": 0,
-			"directHighPriorityEnabled": true,
-			"numBuffers": 2,
-			"verticalSyncEnabled": true,
-			"verticalSyncBlockRenderingEnabled": true,
-			"renderOverfillFactor": 1.2,
-			"renderOversampleFactor": 1,
-			"window": {
-				"title": "OSVR",
-				"fullScreenEnabled": true,
-				"xPosition": 2560,
-				"yPosition": 0
-				},
-			"display": {
-				"rotation": 180,
-				"bitsPerColor": 8
-			},
-			"prediction": {
-				"enabled": true,
-				"staticDelayMS": 26,
-				"leftEyeDelayMS": 0,
-				"rightEyeDelayMS": 0,
-				"localTimeOverride": true
-			},
-			"timeWarp": {
-				"enabled": true,
-				"asynchronous": false,
-				"maxMsBeforeVSync": 5
-			}
-		}
-	},
+	"description": "Version 0.3 of the Nolo OSVR Fusion Configuration for Ceiling Mode. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
+        "renderManagerConfig": "sample-configs/renderManager.direct.landscape.HDKv2.0.newtracker.json",
         "display": "displays/OSVR_HDK_2_0.json",
 	"drivers": [
 		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Drivers --- */
