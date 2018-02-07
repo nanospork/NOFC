@@ -24,6 +24,10 @@ If you are familiar with the process of editing server config files for OSVR and
 	
 * **Implemented ceiling mode** - You can now use one of the NOFC v0.3 "ceiling" configs to use your NOLO basestation in ceiling mode with NOFC. This opens up the possibility of 360 degree tracking.
 
+* **Implemented default marker offset** - A default offset for the headset marker has been added. 
+	* This should reduce the feeling of the headset rotating incorrectly, as if it were on the end of a "turtle neck." 
+	* This offset can easily be edited by changing the "translate" array under "/NOFC/HeadTracker" in the config file.
+
 This new configuration combines the Nolo-OSVR plugin, the OSVR-Fusion plugin, and the official SteamVR-OSVR driver for a more enjoyable experience using Nolo hardware with OSVR.
 
 Please note that the dedicated community members working on NOFC have volunteered their time to make these improvements; please respect their efforts. You will _probably_ encounter bugs and glitches - please report these to https://github.com/nanospork/NOFC/issues
