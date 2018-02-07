@@ -8,7 +8,7 @@ Thank you for testing the BETA of the Nolo OSVR Fusion Configuration (NOFC)!
 
 If you are familiar with the process of editing server config files for OSVR and you are interested in using NOLO with an Oculus DK2 or any other headset for which NOFC does not provide a server configuration file, please help us out here: https://github.com/nanospork/NOFC/issues/4
 
-##Release Notes:
+## Release Notes:
 
 #### v0.3.0 RC1 - February 06, 2018
 
