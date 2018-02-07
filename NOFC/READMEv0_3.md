@@ -1,30 +1,32 @@
-# Nolo OSVR Fusion Configuration v0.2
+# Nolo OSVR Fusion Configuration v0.3
 
 Thank you for testing the BETA of the Nolo OSVR Fusion Configuration (NOFC)!
 
-***UPDATE NOTICE:*** If you have already installed NOFC v0.1, you do not need to follow the SteamVR installation instructions. Simply follow Steps 3 and 4 to update the plugin and choose a configuration file.
+***UPDATE NOTICE:*** If you have already installed NOFC v0.1 or NOFC v0.2, please read the Release Notes and then start following the instructions from ***Step 1b***. You should not need to remove the official NOLO drivers again, unless you re-installed them for some reason.
+
+## Public Request:
+
+If you are familiar with the process of editing server config files for OSVR and you are interested in using NOLO with an Oculus DK2 or any other headset for which NOFC does not provide a server configuration file, please help us out here: https://github.com/nanospork/NOFC/issues/4
 
 ##Release Notes:
 
-#### v0.2 - September 27, 2018
+#### v0.3.0 RC1 - February 06, 2018
 
-* **Major head-tracking smoothness improvement** thanks to a workaround that eliminates duplicate reports sent by the firmware.
+* **Release Candidate 1:** This branch has not been extensively tested, but functions well during short-term testing. Please provide as much feed back as possible at https://github.com/nanospork/NOFC/issues
 
-* **Major controller smoothness improvement** thanks to implementation of the OSVR built-in "one euro" filter.
+* **Complete rework of Windows version of Nolo-OSVR** - we gave in and switched over to LYRobotix's "HIDAPI", which gives better tracking results than reading USB packets directly. Performance should be improved for Windows users on all versions of NOLO firmware.
+	* You still should ***not*** install the official NOLO drivers. 
+	* The Linux version of the driver was updated with some attempts at reading velocity, but the stability is unknown.
+	* Note that the headset marker button was NOT implemented in the new version of the driver. We're sorry if you miss this, but we just didn't have the time to work it in.
 
-* **Slight trackpad calibration improvement** - the trackpads should no longer "jump" to zero when you touch the very edge (unless you move your finger so far that it is no longer detected at all.)
-
-* **Server config improvements** - it is now easier to edit the server config files thanks to the use of additional aliases. This means that you can configure NOFC _without_ touching anything in the "drivers" section.
-	* Want to change the flip button? Just change the path that `/NOFC/flipButton` points to (by default, `/controller/right/menu`). Similar for recenter button and for setting up pitch/yaw/roll for DK2 users.
-	* The only time you should have to edit anything in the "drivers" section is if you are not using an HDK2, in which case you may need to adjust the value of alpha in the very first driver entry.
-	* As well, for ease of use the contents of the NOFC driver section have been compressed into 3 lines in the provided "direct" config file (with alpha still readily visible.)
-		* If you would like to be able to edit these contents, please copy the `drivers` section from the "distv2" config file instead. 
-		
-* **Headset marker button detection** - the headset marker button is now given a semantic path at `/hmd/button`. Advanced users may find a use for this.
+* **Implemented velocity tracking** - Controllers now report velocity to SteamVR, meaning you can throw things in games, among other uses!
+	* Throws specifically are sometimes poor, going the wrong direction or speed - if you can find any consistency to this behaviour, please report it at https://github.com/nanospork/NOFC/issues so we can find out what the cause is and improve on it.
+	
+* **Implemented ceiling mode** - You can now use one of the NOFC v0.3 "ceiling" configs to use your NOLO basestation in ceiling mode with NOFC. This opens up the possibility of 360 degree tracking.
 
 This new configuration combines the Nolo-OSVR plugin, the OSVR-Fusion plugin, and the official SteamVR-OSVR driver for a more enjoyable experience using Nolo hardware with OSVR.
 
-Please note that the dedicated community members working on NOFC have volunteered their time to make these improvements; please respect their efforts. You will _probably_ encounter bugs and glitches - please report these on the Reddit thread or in the appropriate GitHub "issues" section for the component in question.
+Please note that the dedicated community members working on NOFC have volunteered their time to make these improvements; please respect their efforts. You will _probably_ encounter bugs and glitches - please report these to https://github.com/nanospork/NOFC/issues
 
 ## Advantages of NOFC:
 
@@ -69,6 +71,16 @@ The first thing you need to do is de-register any SteamVR Nolo drivers. This may
 ```
 
 _I recommend putting these lines at the very top of the file, just below the very first line, which should be just a curly brace `{`_
+
+### Step 1b: Ensure velocity reports are NOT disabled in SteamVR-OSVR
+
+If your `steamvr.vrsettings` file contains the line `ignoreVelocityReports`, please ensure that the value is set to **false**, as below:
+
+```
+   "osvr" : {
+      "ignoreVelocityReports" : false
+   },
+```
 		
 ### Step 2: Install the latest SteamVR-OSVR driver
 
@@ -139,7 +151,7 @@ Below is the best process I've found for starting up Nolo and OSVR when playing 
 
 Please note that some of the plugins in this BETA have not yet had their source code merged into the master fork of their respective repositories, but they will soon. You can access the development source for each at the following URLs:
 
-* https://github.com/nanospork/nolo-osvr
-* https://github.com/nanospork/OSVR-fusion/tree/flip-180
-* https://github.com/Conzar/SteamVR-OSVR
+* https://github.com/johnlajoie/nolo-osvr
+* https://github.com/nanospork/OSVR-fusion/tree/velocity
+* https://github.com/nanospork/steamvr-osvr/tree/controller-integration
 

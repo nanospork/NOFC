@@ -1,2 +1,2 @@
 Nolo OSVR Fusion Configuration
-Version 0.2
+Version 0.3.0 (RC1)
