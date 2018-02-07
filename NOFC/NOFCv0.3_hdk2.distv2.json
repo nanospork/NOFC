@@ -1,6 +1,5 @@
 {
-	"description": "[Distortion Correction V2 variant] Version 0.2 of the Nolo OSVR Fusion Configuration. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
-	"sleep": 1,
+	"description": "[Distortion Correction V2 variant] Version 0.3 of the Nolo OSVR Fusion Configuration. This configuration uses intelligent sensor fusion and additional filters and settings to get the most out of Nolo hardware when used with the HDK.",
 	"renderManagerConfig": {
 		"meta": {
 			"schemaVersion": 1
@@ -38,15 +37,15 @@
 			}
 		}
 	},
-	"display": "c:/OSVR/hdk.v2.testdisplay.json",
+        "display": "displays/OSVR_HDK_2_0.json",
 	"drivers": [
-		/* --- NOLO OSVR FUSION CONFIGURATION v0.2 Drivers --- */
+		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Drivers --- */
 		{
 			"plugin": "je_nourish_fusion",
 			"driver": "FusionDevice",
 			"params": {
 				"name": "NoloFusedHead",
-				"position": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1",
+				"position": "/NOFC/HeadTracker",
 				"orientation": {
 					"roll": "/NOFC/head/roll",
 					"pitch": "/NOFC/head/pitch",
@@ -83,48 +82,12 @@
 				"flipButton": "/NOFC/flipButton",
 				"flipOrigin": "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
 			}
-		},
-		{
-			"plugin": "org_osvr_filter_oneeuro",
-			"driver": "OneEuroFilter",
-			"params": {
-				"name": "FilteredControllerLeft",
-				"input": "/je_nourish_fusion/NoloControllerLeft/tracker/0",
-				"position": {
-					"minCutoff": 1.15,
-					"beta": 0.5,
-					"derivativeCutoff": 1.2
-				},
-				"orientation": {
-					"minCutoff": 1.5,
-					"beta": 0.5,
-					"derivativeCutoff": 1.2
-				}
-			}
-		},
-		{
-			"plugin": "org_osvr_filter_oneeuro",
-			"driver": "OneEuroFilter",
-			"params": {
-				"name": "FilteredControllerRight",
-				"input": "/je_nourish_fusion/NoloControllerRight/tracker/0",
-				"position": {
-					"minCutoff": 1.15,
-					"beta": 0.5,
-					"derivativeCutoff": 1.2
-				},
-				"orientation": {
-					"minCutoff": 1.5,
-					"beta": 0.5,
-					"derivativeCutoff": 1.2
-				}
-			}
 		}
 		/* --- End NOFC Drivers --- */
 		/* Add a comma after this comment to add more drivers to this config file */
 	],
 	"aliases": {
-		/* --- NOLO OSVR FUSION CONFIGURATION v0.2 Aliases --- */
+		/* --- NOLO OSVR FUSION CONFIGURATION v0.3 Aliases --- */
 		"/NOFC/head/roll": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd",
 		"/NOFC/head/pitch": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd",
 		"/NOFC/head/yaw": "/hdkYawSpace",
@@ -137,12 +100,21 @@
 				"degrees": 0
 			},
 			"child": "/com_osvr_Multiserver/OSVRHackerDevKit0/semantic/hmd"
-        },	
+		},	
 		
 		"/me/head": "/je_nourish_fusion/NoloFusedHead/tracker/0",
-		"/me/hands/left": "/je_nourish_fusion/NoloControllerLeft/tracker/0",
-		"/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0"
+		"/me/hands/left": "/je_nourish_fusion/NoloControllerLeft/tracker/0", 
+		"/me/hands/right": "/je_nourish_fusion/NoloControllerRight/tracker/0",
+
+	    "/NOFC/HeadTracker": {
+		    "translate" : [0.0,-0.1,0.1],
+		    "child" : "/com_osvr_Nolo/LYRobotix Nolo/tracker/1"
+		    }
+		}
 		/* --- End NOFC Aliases --- */	
-		/* Add a comma after this comment to add more aliases to this config file */
-    }
+	},
+	"server": {
+		"sleep": 1
+	}
+
 }
